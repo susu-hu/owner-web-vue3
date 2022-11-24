@@ -1,14 +1,14 @@
 <!--
  * @Author: 胡苏珍 1628469970@qq.com
  * @Date: 2022-11-24 15:43:47
- * @LastEditors: 胡苏珍 1628469970@qq.com
- * @LastEditTime: 2022-11-24 15:59:08
+ * @LastEditors: susu 1628469970@qq.com
+ * @LastEditTime: 2022-11-24 20:34:21
  * @FilePath: \trace\src\components\AddGood.vue
  * @Description: 创建商品
 -->
 <template>
   <el-dialog
-    v-bind="show"
+    :model-value="show"
     title="Warning"
     width="30%"
     center
@@ -29,12 +29,6 @@
 </template>
 
 <script setup name="AddGood">
-const props = defineProps({
-  show: {
-    type: Boolean,
-    default: false,
-  },
-});
 import {
   ref,
   reactive,
@@ -44,6 +38,12 @@ import {
   onMounted,
   onBeforeUnmount,
 } from "vue";
+const props = defineProps({
+  show: {
+    type: Boolean,
+    default: false,
+  },
+});
 const emits = defineEmits(["update:show"]);
 const closeDialog = () => {
   emits("update:show", false);

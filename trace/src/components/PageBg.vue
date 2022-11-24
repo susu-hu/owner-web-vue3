@@ -1,8 +1,8 @@
 <!--
  * @Author: 胡苏珍 1628469970@qq.com
  * @Date: 2022-11-24 14:33:42
- * @LastEditors: 胡苏珍 1628469970@qq.com
- * @LastEditTime: 2022-11-24 15:11:46
+ * @LastEditors: susu 1628469970@qq.com
+ * @LastEditTime: 2022-11-24 20:28:23
  * @FilePath: \trace\src\components\PageBg.vue
  * @Description: 毛玻璃-背景
 -->
@@ -25,7 +25,7 @@
     height: 100%;
     & > div {
       position: absolute;
-      opacity: 0.3;
+      opacity: 0.5;
     }
     &-polygon-1 {
       bottom: 100px;
