@@ -1,47 +1,49 @@
 <!--
  * @Author: 胡苏珍 1628469970@qq.com
  * @Date: 2022-11-24 15:43:47
- * @LastEditors: 胡苏珍 1628469970@qq.com
- * @LastEditTime: 2022-11-25 17:53:34
+ * @LastEditors: susu 1628469970@qq.com
+ * @LastEditTime: 2022-11-26 02:20:26
  * @FilePath: \trace\src\components\AddGood.vue
  * @Description: 创建商品
 -->
 <template>
   <el-dialog
     :model-value="show"
-    title="Warning"
-    width="30%"
+    title="新增商品"
+    width="400px"
     center
     :append-to-body="true"
     @close="closeDialog"
+    class="page-dailog"
+    size="large"
   >
-    <el-form :model="params" :inline="true">
-      <el-form-item label="商品类别">
-        <el-input v-model="params._category" />
+    <el-form
+      ref="formRef"
+      :rules="rules"
+      :model="form"
+      :inline="true"
+      label-width="110px"
+    >
+      <el-form-item label="商品类别:" prop="_category">
+        <el-input v-model.trim="form._category" clearable />
       </el-form-item>
-      <el-form-item label="商品ID">
-        <el-input v-model="params._goodsId" />
+      <el-form-item label="商品ID:" prop="_goodsId">
+        <el-input v-model.trim="form._goodsId" clearable />
       </el-form-item>
     </el-form>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click="closeDialog">Cancel</el-button>
-        <el-button type="primary" @click="closeDialog"> Confirm </el-button>
+        <BaseButton type="default" data="取消" @click="closeDialog" />
+        <BaseButton data="确定" @click="submitForm" />
       </span>
     </template>
   </el-dialog>
 </template>
 
 <script setup name="AddGood">
-import {
-  ref,
-  reactive,
-  toRefs,
-  computed,
-  watch,
-  onMounted,
-  onBeforeUnmount,
-} from "vue";
+import { ref, reactive, unref } from "vue";
+import { addGood } from "@/api";
+import { ElMessage } from "element-plus";
 const props = defineProps({
   show: {
     type: Boolean,
@@ -51,8 +53,46 @@ const props = defineProps({
 const emits = defineEmits(["update:show"]);
 const closeDialog = () => {
   emits("update:show", false);
+  resetForm();
 };
-const params = ref({});
+// 表单
+const formRef = ref(null);
+// 定义变量
+const form = reactive({
+  _category: "",
+  _goodsId: "",
+});
+// 表单规则
+const rules = {
+  _category: [{ required: true, message: "请输入商品分类", trigger: "blur" }],
+  _goodsId: [{ required: true, message: "请输入商品ID", trigger: "blur" }],
+};
+// 表单提交
+const submitForm = () => {
+  let formEl = unref(formRef);
+  if (!formEl) return;
+  formEl.validate(async (valid) => {
+    if (valid) {
+      try {
+        const { code } = await addGood(form);
+        if (code == 200) {
+          closeDialog();
+          ElMessage.success("新增成功");
+        }
+      } catch (err) {}
+    }
+  });
+};
+// 表单重置
+const resetForm = () => {
+  let formEl = unref(formRef);
+  if (!formEl) return;
+  formEl.resetFields();
+};
 </script>
 
-<style scoped lang="less"></style>
+<style lang="less">
+.page-dailog {
+  border-radius: 20px;
+}
+</style>

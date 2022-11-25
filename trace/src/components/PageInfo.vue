@@ -1,39 +1,48 @@
 <!--
  * @Author: 胡苏珍 1628469970@qq.com
  * @Date: 2022-11-24 15:29:46
- * @LastEditors: 胡苏珍 1628469970@qq.com
- * @LastEditTime: 2022-11-25 18:00:42
+ * @LastEditors: susu 1628469970@qq.com
+ * @LastEditTime: 2022-11-25 23:09:02
  * @FilePath: \trace\src\components\PageInfo.vue
  * @Description: 商品当前状态
 -->
 <template>
-  <div class="flex-row j_b container">
-    <div>商品类别：{{ dataInfo._category }}</div>
-    <div>商品ID：{{ dataInfo._goodsId }}</div>
-    <div>当前状态:{{ dataInfo._status }}</div>
+  <div class="flex-row j_b page-info flex-row">
+    <div class="page-info-detail flex-row">
+      <BaseTitle data="商品类别:" />
+      <p>{{ data?._category || "--" }}</p>
+    </div>
+    <div class="page-info-detail flex-row">
+      <BaseTitle data="商品ID：" />
+      <p>{{ data?._goodsId || "--" }}</p>
+    </div>
+    <div class="page-info-detail flex-row">
+      <BaseTitle data="当前状态:" />
+      <p>{{ data?._status || "--" }}</p>
+    </div>
   </div>
 </template>
 
 <script setup name="PageInfo">
-import {
-  ref,
-  reactive,
-  toRefs,
-  computed,
-  watch,
-  onMounted,
-  onBeforeUnmount,
-} from "vue";
-const dataInfo = {
-  _goodsId: "商品ID",
-  _category: "商品类别",
-  _status: "当前状态",
-};
+const props = defineProps({
+  data: {
+    type: Object,
+    default: () => {}, //当前商品分类信息
+  },
+});
 </script>
 
 <style scoped lang="less">
-.container {
+.page-info {
   width: 100%;
-  margin: 30px;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 12px 20px 6px rgb(104 112 118 / 8%);
+  &-detail > p {
+    margin-left: 20px;
+    max-width: 280px;
+  }
 }
 </style>

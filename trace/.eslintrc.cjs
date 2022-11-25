@@ -24,5 +24,6 @@ module.exports = {
         //关闭组件命名规则
         "vue/multi-word-component-names": "off",
         "no-unused-vars": "off",
+        "no-empty": 0, //允许出现空的代码块
     }
 }

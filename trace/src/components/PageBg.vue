@@ -2,7 +2,7 @@
  * @Author: 胡苏珍 1628469970@qq.com
  * @Date: 2022-11-24 14:33:42
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-24 20:28:23
+ * @LastEditTime: 2022-11-25 20:15:03
  * @FilePath: \trace\src\components\PageBg.vue
  * @Description: 毛玻璃-背景
 -->
@@ -19,7 +19,7 @@
 <style scoped lang="less">
 .container {
   &-bg {
-    position: absolute;
+    position: fixed;
     z-index: -1;
     width: 100%;
     height: 100%;
