@@ -1,8 +1,8 @@
 <!--
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-24 20:25:29
- * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-24 20:39:26
+ * @LastEditors: 胡苏珍 1628469970@qq.com
+ * @LastEditTime: 2022-11-25 17:55:43
  * @FilePath: \trace\src\components\AddRecord.vue
  * @Description: 添加商品流通记录
 -->
@@ -15,10 +15,17 @@
     :append-to-body="true"
     @close="closeDialog"
   >
-    <span>
-      It should be noted that the content will not be aligned in center by
-      default
-    </span>
+    <el-form :model="params" :inline="true">
+      <el-form-item label="操作账户地址">
+        <el-input v-model="params._category" />
+      </el-form-item>
+      <el-form-item label="商品状态">
+        <el-input v-model="params._goodsId" />
+      </el-form-item>
+      <el-form-item label="说明">
+        <el-input v-model="params.remark" />
+      </el-form-item>
+    </el-form>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="closeDialog">Cancel</el-button>
@@ -48,6 +55,7 @@ const emits = defineEmits(["update:show"]);
 const closeDialog = () => {
   emits("update:show", false);
 };
+const params = ref({});
 </script>
 
 <style scoped lang="less"></style>

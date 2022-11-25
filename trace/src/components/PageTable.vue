@@ -2,7 +2,7 @@
  * @Author: 胡苏珍 1628469970@qq.com
  * @Date: 2022-11-24 15:20:20
  * @LastEditors: 胡苏珍 1628469970@qq.com
- * @LastEditTime: 2022-11-24 15:27:34
+ * @LastEditTime: 2022-11-25 17:56:59
  * @FilePath: \trace\src\components\PageTable.vue
  * @Description: 商品流通列表
 -->
@@ -12,6 +12,7 @@
     <el-table-column prop="name" label="Name" width="180" />
     <el-table-column prop="address" label="Address" />
   </el-table>
+  <el-pagination background layout="prev, pager, next" :total="1000" />
 </template>
 
 <script setup name="PageTable">

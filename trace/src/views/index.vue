@@ -1,8 +1,8 @@
 <!--
  * @Author: 胡苏珍 1628469970@qq.com
  * @Date: 2022-11-24 11:43:22
- * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-24 20:40:34
+ * @LastEditors: 胡苏珍 1628469970@qq.com
+ * @LastEditTime: 2022-11-25 17:59:04
  * @FilePath: \trace\src\views\index.vue
  * @Description: 首页
 -->
@@ -10,7 +10,7 @@
   <div class="container flex-column">
     <PageBg />
     <h2>供应链防伪溯源系统</h2>
-    <div class="head-search">
+    <div class="head-search flex">
       <el-form :model="params" :inline="true">
         <el-form-item label="商品类别">
           <el-input v-model="params._category" />
@@ -61,6 +61,9 @@ const showGoodDialog = ref(false),
     color: #2d3d50;
     letter-spacing: 4px;
     text-shadow: 0 2px 2px rgba(20, 20, 20, 0.4);
+  }
+  .head-search {
+    margin: 30px;
   }
 }
 </style>

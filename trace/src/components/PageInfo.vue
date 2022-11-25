@@ -1,13 +1,13 @@
 <!--
  * @Author: 胡苏珍 1628469970@qq.com
- * @Date: 2022-11-24 15:20:20
+ * @Date: 2022-11-24 15:29:46
  * @LastEditors: 胡苏珍 1628469970@qq.com
- * @LastEditTime: 2022-11-24 15:36:31
- * @FilePath: \trace\src\components\PageTable.vue
- * @Description: 商品流通列表
+ * @LastEditTime: 2022-11-25 18:00:42
+ * @FilePath: \trace\src\components\PageInfo.vue
+ * @Description: 商品当前状态
 -->
 <template>
-  <div class="flex-row">
+  <div class="flex-row j_b container">
     <div>商品类别：{{ dataInfo._category }}</div>
     <div>商品ID：{{ dataInfo._goodsId }}</div>
     <div>当前状态:{{ dataInfo._status }}</div>
@@ -31,4 +31,9 @@ const dataInfo = {
 };
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.container {
+  width: 100%;
+  margin: 30px;
+}
+</style>
