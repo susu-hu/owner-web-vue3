@@ -10,30 +10,30 @@
   <div class="container flex-column">
     <h2>区块链资产转移系统</h2>
     <div class="flex head-account">
-      <CurrAccount />
+      <PageAccount />
     </div>
     <PageInfo />
     <div class="head-record">
       <p class="head-record-title mb10">
         <BaseTitle data="所有待批准的资产请求列表" />
       </p>
-      <ApprovalTable />
+      <TableApproval />
     </div>
     <div class="head-record">
       <div class="flex-row j_b mb10">
         <BaseTitle data="我的资产请求列表" class="head-record-title" />
         <BaseButton data="发起请求" @click="showSaleDialog = true" />
       </div>
-      <RequestTable />
+      <TableRequest />
     </div>
     <div class="head-record">
       <p class="head-record-title mb10">
         <BaseTitle data="我的资产" />
       </p>
-      <MyDepositTable />
+      <TableAssets />
     </div>
   </div>
-  <MakeRquest v-model:show="showSaleDialog" />
+  <AssetRquest v-model:show="showSaleDialog" />
 </template>
 
 <script setup>

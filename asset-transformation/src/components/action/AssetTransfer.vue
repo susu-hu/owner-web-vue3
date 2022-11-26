@@ -40,7 +40,7 @@
   </el-dialog>
 </template>
 
-<script setup name="MakeApprove">
+<script setup name="AssetApprove">
 import { ref, reactive, unref, watch } from "vue";
 import { addGood } from "@/api";
 import { ElMessage } from "element-plus";

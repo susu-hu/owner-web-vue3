@@ -3,7 +3,7 @@
  * @Date: 2022-11-24 15:43:47
  * @LastEditors: susu 1628469970@qq.com
  * @LastEditTime: 2022-11-27 01:08:46
- * @FilePath: \asset-transformation\src\components\MakeApprove.vue
+ * @FilePath: \asset-transformation\src\components\AssetApprove.vue
  * @Description: 批准请求
 -->
 <template>
@@ -43,7 +43,7 @@
   </el-dialog>
 </template>
 
-<script setup name="MakeApprove">
+<script setup name="AssetApprove">
 import { ref, reactive, unref, watch } from "vue";
 import { addGood } from "@/api";
 import { ElMessage } from "element-plus";

@@ -1,10 +1,10 @@
 <!--
  * @Author: susu 1628469970@qq.com
- * @Date: 2022-11-26 19:23:43
+ * @Date: 2022-11-26 17:17:12
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-27 00:27:40
- * @FilePath: \asset-transformation\src\components\RequestTable.vue
- * @Description: 我的资产请求列表
+ * @LastEditTime: 2022-11-26 23:05:26
+ * @FilePath: \asset-transformation\src\components\TableApproval.vue
+ * @Description: 所有待批准的资产请求列表
 -->
 <template>
   <BasePageTable
@@ -18,15 +18,15 @@
     <template #default="{ row }">
       <div
         class="flex-row action-btn"
-        @click="(showCancelDialog = true), (state.currRow = row)"
+        @click="(showBuyDialog = true), (state.currRow = row)"
       >
-        <span>删除</span>
-        <el-icon size="18" color="#0072f5"><Remove /></el-icon>
+        <span>批准</span>
+        <el-icon size="18" color="#0072f5"><Finished /></el-icon>
       </div>
     </template>
   </BasePageTable>
-  <CancelRequest
-    v-model:show="showCancelDialog"
+  <AssetApprove
+    v-model:show="showBuyDialog"
     :curr="state.currRow"
     @query="updateList"
   />
@@ -34,15 +34,15 @@
 <script setup>
 import { ref, reactive, toRefs, onBeforeUnmount } from "vue";
 import mitter from "@/utils/bus.js";
-import { DEPOSIT_REQUEST_COLUMNS } from "@/constant/column";
-import { getSalesList } from "@/api";
-//取消出售弹框
-const showCancelDialog = ref(false);
+import { DEPOSIT_BEAPPROVAL_COLUMNS } from "@/constant/column";
+import { getEnergyList } from "@/api";
+//购买弹框
+const showBuyDialog = ref(false);
 // 页面参数
 const state = reactive({
   total: 0, //列表总条数
   tableData: [], //列表数据
-  columns: DEPOSIT_REQUEST_COLUMNS, //列表字段属性
+  columns: DEPOSIT_BEAPPROVAL_COLUMNS, //列表字段属性
   currRow: {}, //当前选中的数据
 });
 // 查询参数
@@ -55,7 +55,7 @@ let params = reactive({
 const getListData = async (e) => {
   params = e;
   try {
-    const { code, data, total } = await getSalesList(e);
+    const { code, data, total } = await getEnergyList(e);
     if (code == 200) {
       state.tableData = data;
       state.total = total;
@@ -67,16 +67,18 @@ const handleCurrentChange = (e) => {
   params.page = e;
   getListData(params);
 };
-//更新出售列表
+mitter.$on("getApprovalData", getListData);
+// 在组件卸载之前移除监听
+onBeforeUnmount(() => {
+  mitter.$off("getApprovalData");
+});
+//更新列表
 const updateList = () => {
   params.page = 1;
   getListData(params);
+  // 更新我的购买记录列表
+  mitter.$emit("getMyDepositData", params);
 };
-mitter.$on("getRequestData", getListData);
-// 在组件卸载之前移除监听
-onBeforeUnmount(() => {
-  mitter.$off("getRequestData");
-});
 </script>
 <style lang="less" scoped>
 .action-btn {

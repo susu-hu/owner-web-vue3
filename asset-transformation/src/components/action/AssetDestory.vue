@@ -25,7 +25,7 @@
     </template>
   </el-dialog>
 </template>
-<script setup name="CancelRequest">
+<script setup name="AssetCancel">
 import { ref } from "vue";
 import { addGood } from "@/api";
 import { ElMessage } from "element-plus";
