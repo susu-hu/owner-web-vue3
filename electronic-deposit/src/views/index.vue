@@ -2,7 +2,7 @@
  * @Author: 胡苏珍 1628469970@qq.com
  * @Date: 2022-11-24 11:43:22
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 22:56:33
+ * @LastEditTime: 2022-11-26 23:20:33
  * @FilePath: \electronic-deposit\src\views\index.vue
  * @Description: 首页
 -->
@@ -17,23 +17,23 @@
       <p class="head-record-title mb10">
         <BaseTitle data="所有待批准的存证请求列表" />
       </p>
-      <EnergyTable />
+      <ApprovalTable />
     </div>
     <div class="head-record">
       <div class="flex-row j_b mb10">
         <BaseTitle data="我的存证请求列表" class="head-record-title" />
         <BaseButton data="发起请求" @click="showSaleDialog = true" />
       </div>
-      <SalesTable />
+      <RequestTable />
     </div>
     <div class="head-record">
       <p class="head-record-title mb10">
         <BaseTitle data="我的存证" />
       </p>
-      <PurchasedTable />
+      <MyDepositTable />
     </div>
   </div>
-  <SaleEnery v-model:show="showSaleDialog" />
+  <MakeRquest v-model:show="showSaleDialog" />
 </template>
 
 <script setup>

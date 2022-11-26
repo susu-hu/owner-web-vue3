@@ -2,15 +2,15 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 13:55:25
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 22:37:18
- * @FilePath: \electronic-deposit\src\components\SaleEnery.vue
- * @Description: 出售能源
+ * @LastEditTime: 2022-11-26 23:46:08
+ * @FilePath: \electronic-deposit\src\components\MakeRquest.vue
+ * @Description: 发起请求
 -->
 
 <template>
   <el-dialog
     :model-value="show"
-    title="出售能源"
+    title="发起请求"
     width="420px"
     center
     :append-to-body="true"
@@ -24,26 +24,17 @@
       :inline="true"
       label-width="140px"
     >
-      <el-form-item label="能源ID：" prop="energyId">
-        <el-input v-model="form.energyId" clearable />
+      <el-form-item label="请求ID：" prop="id">
+        <el-input v-model="form.id" clearable />
       </el-form-item>
-      <el-form-item label="单价：" prop="price">
-        <el-input v-model="form.price" clearable />
+      <el-form-item label="存证摘要：" prop="hash">
+        <el-input v-model="form.hash" clearable />
       </el-form-item>
-      <el-form-item label="总量：" prop="energyAmount">
-        <el-input v-model="form.energyAmount" clearable />
+      <el-form-item label="请求说明Hash：" prop="ext">
+        <el-input v-model="form.ext" clearable />
       </el-form-item>
-      <el-form-item label="余量：" prop="energyAllowance">
-        <el-input v-model="form.energyAllowance" clearable />
-      </el-form-item>
-      <el-form-item label="是否完成：" prop="success">
-        <el-radio-group v-model="form.success">
-          <el-radio label="1" size="large" border>是</el-radio>
-          <el-radio label="0" size="large" border>否</el-radio>
-        </el-radio-group>
-      </el-form-item>
-      <el-form-item label="购买人数量：" prop="numBuyers">
-        <el-input v-model="form.numBuyers" clearable />
+      <el-form-item label="批准人数：" prop="voted">
+        <el-input v-model="form.voted" clearable />
       </el-form-item>
     </el-form>
     <template #footer>
@@ -55,7 +46,7 @@
   </el-dialog>
 </template>
 
-<script setup name="SaleEnery">
+<script setup name="MakeRquest">
 import { ref, unref, reactive, onBeforeUnmount } from "vue";
 import mitter from "@/utils/bus.js";
 import { addGood } from "@/api";
@@ -82,21 +73,17 @@ const loading = ref(false);
 const formRef = ref(null);
 // 定义变量
 const form = reactive({
-  energyAllowance: "",
-  energyAmount: "",
-  energyId: "",
-  numBuyers: "",
-  price: "",
-  success: "",
+  voted: "",
+  ext: "",
+  id: "",
+  hash: "",
 });
 // 表单规则
 const rules = {
-  energyAllowance: [{ required: true, message: "请输入余量", trigger: "blur" }],
-  energyAmount: [{ required: true, message: "请输入总量", trigger: "blur" }],
-  energyId: [{ required: true, message: "请输入能源ID", trigger: "blur" }],
-  numBuyers: [{ required: true, message: "请输入购买人数量", trigger: "blur" }],
-  price: [{ required: true, message: "请输入单价", trigger: "blur" }],
-  success: [{ required: true, message: "请选择是否完成", trigger: "change" }],
+  voted: [{ required: true, message: "请输入批准人数", trigger: "blur" }],
+  ext: [{ required: true, message: "请输入请求说明Hash", trigger: "blur" }],
+  id: [{ required: true, message: "请输入请求ID", trigger: "blur" }],
+  hash: [{ required: true, message: "请输入存证摘要", trigger: "blur" }],
 };
 // 表单提交
 const submitForm = async () => {
@@ -109,13 +96,13 @@ const submitForm = async () => {
         const { code } = await addGood(form);
         if (code == 200) {
           closeDialog();
-          // 更新我的出售列表
-          mitter.$emit("getSalesdData", {
+          // 更新我的存证请求列表
+          mitter.$emit("getRequestData", {
             page: 1,
             pageSize: 20,
             accounts: accounts.value,
           });
-          ElMessage.success("出售成功");
+          ElMessage.success("操作成功");
         }
       } catch (err) {
       } finally {

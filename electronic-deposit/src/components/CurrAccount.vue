@@ -2,7 +2,7 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 16:07:13
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 22:33:46
+ * @LastEditTime: 2022-11-26 23:36:10
  * @FilePath: \electronic-deposit\src\components\CurrAccount.vue
  * @Description: 当前账户
 -->
@@ -49,9 +49,9 @@ const getInitData = (e) => {
     pageSize: 20,
   };
   mitter.$emit("getAccountInfo", e);
-  mitter.$emit("getEnergyData", p);
-  mitter.$emit("getPurchasedData", p);
-  mitter.$emit("getSalesdData", p);
+  mitter.$emit("getApprovalData", p);
+  mitter.$emit("getMyDepositData", p);
+  mitter.$emit("getRequestData", p);
 };
 </script>
 <style lang="less" scoped></style>

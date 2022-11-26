@@ -2,8 +2,8 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 19:24:14
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 23:01:38
- * @FilePath: \electronic-deposit\src\components\PurchasedTable.vue
+ * @LastEditTime: 2022-11-26 23:22:29
+ * @FilePath: \electronic-deposit\src\components\MyDepositTable.vue
  * @Description: 我的购买记录列表
 -->
 <template>
@@ -50,9 +50,9 @@ const handleCurrentChange = (e) => {
   params.page = e;
   getListData(params);
 };
-mitter.$on("getPurchasedData", getListData);
+mitter.$on("getMyDepositData", getListData);
 // 在组件卸载之前移除监听
 onBeforeUnmount(() => {
-  mitter.$off("getPurchasedData");
+  mitter.$off("getMyDepositData");
 });
 </script>

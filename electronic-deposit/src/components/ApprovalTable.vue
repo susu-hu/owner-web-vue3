@@ -2,9 +2,9 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 17:17:12
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 22:40:02
- * @FilePath: \electronic-deposit\src\components\EnergyTable.vue
- * @Description: 能源列表
+ * @LastEditTime: 2022-11-26 23:05:26
+ * @FilePath: \electronic-deposit\src\components\ApprovalTable.vue
+ * @Description: 所有待批准的存证请求列表
 -->
 <template>
   <BasePageTable
@@ -20,12 +20,12 @@
         class="flex-row action-btn"
         @click="(showBuyDialog = true), (state.currRow = row)"
       >
-        <span>购买</span>
-        <el-icon size="18" color="#0072f5"><ShoppingCartFull /></el-icon>
+        <span>批准</span>
+        <el-icon size="18" color="#0072f5"><Finished /></el-icon>
       </div>
     </template>
   </BasePageTable>
-  <BuyEnergy
+  <MakeApprove
     v-model:show="showBuyDialog"
     :curr="state.currRow"
     @query="updateList"
@@ -67,17 +67,17 @@ const handleCurrentChange = (e) => {
   params.page = e;
   getListData(params);
 };
-mitter.$on("getEnergyData", getListData);
+mitter.$on("getApprovalData", getListData);
 // 在组件卸载之前移除监听
 onBeforeUnmount(() => {
-  mitter.$off("getEnergyData");
+  mitter.$off("getApprovalData");
 });
 //更新列表
 const updateList = () => {
   params.page = 1;
   getListData(params);
   // 更新我的购买记录列表
-  mitter.$emit("getPurchasedData", params);
+  mitter.$emit("getMyDepositData", params);
 };
 </script>
 <style lang="less" scoped>

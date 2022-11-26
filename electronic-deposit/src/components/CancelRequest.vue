@@ -2,21 +2,21 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 20:03:12
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 20:23:09
+ * @LastEditTime: 2022-11-26 23:45:50
  * @FilePath: \electronic-deposit\src\components\CanceleSale.vue
- * @Description: 取消出售
+ * @Description: 删除请求
 -->
 <template>
   <el-dialog
     :model-value="show"
-    title="取消出售"
+    title="取消请求"
     width="420px"
     center
     :append-to-body="true"
     @close="closeDialog"
     class="page-dailog"
   >
-    <p>是否取消出售？</p>
+    <p>是否删除请求？</p>
     <template #footer>
       <span class="dialog-footer">
         <BaseButton type="default" data="取消" @click="closeDialog" />
@@ -25,7 +25,7 @@
     </template>
   </el-dialog>
 </template>
-<script setup name="CancelSale">
+<script setup name="CancelRequest">
 import { ref, unref, reactive } from "vue";
 import { addGood } from "@/api";
 import { ElMessage } from "element-plus";
@@ -49,11 +49,11 @@ const loading = ref(false);
 const submitForm = async () => {
   loading.value = true;
   try {
-    const { code } = await addGood({ energyId: props.curr.energyId });
+    const { code } = await addGood({ id: props.curr.id });
     if (code == 200) {
       closeDialog();
       emits("query");
-      ElMessage.success("取消成功");
+      ElMessage.success("删除成功");
     }
   } catch (err) {
   } finally {

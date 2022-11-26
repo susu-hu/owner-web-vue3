@@ -2,9 +2,9 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 19:23:43
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 23:01:07
- * @FilePath: \electronic-deposit\src\components\SalesTable.vue
- * @Description: 我的出售记录列表
+ * @LastEditTime: 2022-11-26 23:21:22
+ * @FilePath: \electronic-deposit\src\components\RequestTable.vue
+ * @Description: 我的存证请求列表
 -->
 <template>
   <BasePageTable
@@ -20,12 +20,12 @@
         class="flex-row action-btn"
         @click="(showCancelDialog = true), (state.currRow = row)"
       >
-        <span>取消出售</span>
+        <span>删除</span>
         <el-icon size="18" color="#0072f5"><Remove /></el-icon>
       </div>
     </template>
   </BasePageTable>
-  <CancelSale
+  <CancelRequest
     v-model:show="showCancelDialog"
     :curr="state.currRow"
     @query="updateList"
@@ -72,10 +72,10 @@ const updateList = () => {
   params.page = 1;
   getListData(params);
 };
-mitter.$on("getSalesdData", getListData);
+mitter.$on("getRequestData", getListData);
 // 在组件卸载之前移除监听
 onBeforeUnmount(() => {
-  mitter.$off("getSalesdData");
+  mitter.$off("getRequestData");
 });
 </script>
 <style lang="less" scoped>

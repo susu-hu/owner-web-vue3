@@ -18,7 +18,7 @@ export const getAccounts = (params) => {
  */
 export const getAcccountInfo = (params) => {
     return request({
-        url: "/getDataInfo",
+        url: "/getDataInfoE",
         method: "get",
         params,
     });
@@ -26,38 +26,38 @@ export const getAcccountInfo = (params) => {
 
 
 /**
- * 获取能源列表
+ * 获取所有待批准的存证请求列表
  * @param {*} data
  * @returns
  */
 export const getEnergyList = (data) => {
     return request({
-        url: "/getEnergyList",
+        url: "/getEnergyListE",
         method: "post",
         data,
     });
 };
 
 /**
- * 获取已售列表
+ * 我的存证请求列表
  * @param {*} data
  * @returns
  */
 export const getSalesList = (data) => {
     return request({
-        url: "/getSalesList",
+        url: "/getSalesListE",
         method: "post",
         data,
     });
 };
 /**
- * 获取购买列表
+ * 我的存证
  * @param {*} data
  * @returns
  */
 export const getPurchasedList = (data) => {
     return request({
-        url: "/getPurchasedList",
+        url: "/getPurchasedListE",
         method: "post",
         data,
     });
