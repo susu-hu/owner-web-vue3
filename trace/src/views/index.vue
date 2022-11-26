@@ -2,7 +2,7 @@
  * @Author: 胡苏珍 1628469970@qq.com
  * @Date: 2022-11-24 11:43:22
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 02:13:27
+ * @LastEditTime: 2022-11-26 11:38:34
  * @FilePath: \trace\src\views\index.vue
  * @Description: 首页
 -->
@@ -49,15 +49,7 @@
 
 <script setup>
 import axios from "axios";
-import {
-  ref,
-  reactive,
-  toRefs,
-  computed,
-  watch,
-  onMounted,
-  onBeforeUnmount,
-} from "vue";
+import { ref, reactive } from "vue";
 import { getGoodRecords } from "@/api";
 const showGoodDialog = ref(false),
   showRecordDialog = ref(false);
@@ -82,20 +74,17 @@ const searchInfo = () => {
 // 获取商品当前信息
 const getGoodInfo = async (e) => {
   try {
-    console.log(e);
     let info = {
       _category: "电子产品",
       _goodsId: "0002",
       _status: "有效",
     };
     state.goodInfo = info;
-    console.log(state.goodInfo);
   } catch (err) {}
 };
 // 获取商品流通记录
 const getListData = async (e) => {
   try {
-    console.log(e);
     const { code, data, total } = await getGoodRecords(e);
     if (code == 200) {
       state.tableData = data;
