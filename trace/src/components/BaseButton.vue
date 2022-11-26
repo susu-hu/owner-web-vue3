@@ -2,7 +2,7 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-25 20:49:27
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-25 21:14:19
+ * @LastEditTime: 2022-11-26 12:17:31
  * @FilePath: \trace\src\components\BaseButton.vue
  * @Description: 页面按钮
 -->
@@ -10,10 +10,13 @@
   <el-button
     type="primary"
     class="base-button-primary"
+    :loading="loading"
     v-if="props.type == 'primary'"
     >{{ data }}</el-button
   >
-  <el-button class="base-button-default" v-else>{{ data }}</el-button>
+  <el-button :loading="loading" class="base-button-default" v-else>{{
+    data
+  }}</el-button>
 </template>
 <script setup>
 const props = defineProps({
@@ -24,6 +27,10 @@ const props = defineProps({
   type: {
     type: String,
     default: "primary", //primary-蓝色主题  default:白色主题
+  },
+  loading: {
+    type: Boolean,
+    default: false, //是否处于加载中
   },
 });
 </script>

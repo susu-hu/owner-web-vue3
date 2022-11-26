@@ -2,7 +2,7 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-24 20:25:29
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 02:19:55
+ * @LastEditTime: 2022-11-26 12:50:59
  * @FilePath: \trace\src\components\AddRecord.vue
  * @Description: 添加商品流通记录
 -->
@@ -43,7 +43,7 @@
     <template #footer>
       <span class="dialog-footer">
         <BaseButton type="default" data="取消" @click="closeDialog" />
-        <BaseButton data="确定" @click="submitForm" />
+        <BaseButton data="确定" @click="submitForm" :loading="loading" />
       </span>
     </template>
   </el-dialog>
@@ -59,11 +59,13 @@ const props = defineProps({
     default: false,
   },
 });
-const emits = defineEmits(["update:show"]);
+const emits = defineEmits(["update:show", "query"]);
 const closeDialog = () => {
   emits("update:show", false);
   resetForm();
 };
+// 按钮防重复点击
+const loading = ref(false);
 // 表单
 const formRef = ref(null);
 // 定义变量
@@ -83,13 +85,18 @@ const submitForm = async () => {
   if (!formEl) return;
   formEl.validate(async (valid) => {
     if (valid) {
+      loading.value = true;
       try {
         const { code } = await addGood(form);
         if (code == 200) {
           closeDialog();
+          emits("query");
           ElMessage.success("添加成功");
         }
-      } catch (err) {}
+      } catch (err) {
+      } finally {
+        loading.value = false;
+      }
     }
   });
 };

@@ -2,7 +2,7 @@
  * @Author: 胡苏珍 1628469970@qq.com
  * @Date: 2022-11-24 11:43:22
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 11:38:34
+ * @LastEditTime: 2022-11-26 12:53:23
  * @FilePath: \trace\src\views\index.vue
  * @Description: 首页
 -->
@@ -44,7 +44,7 @@
     />
   </div>
   <AddGood v-model:show="showGoodDialog" />
-  <AddRecord v-model:show="showRecordDialog" />
+  <AddRecord v-model:show="showRecordDialog" @query="updateList" />
 </template>
 
 <script setup>
@@ -95,6 +95,11 @@ const getListData = async (e) => {
 //页数切换
 const handleCurrentChange = (e) => {
   params.page = e;
+  getListData(params);
+};
+//更新流通记录列表
+const updateList = () => {
+  params.page = 1;
   getListData(params);
 };
 </script>

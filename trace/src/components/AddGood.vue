@@ -2,7 +2,7 @@
  * @Author: 胡苏珍 1628469970@qq.com
  * @Date: 2022-11-24 15:43:47
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 02:20:26
+ * @LastEditTime: 2022-11-26 12:22:41
  * @FilePath: \trace\src\components\AddGood.vue
  * @Description: 创建商品
 -->
@@ -34,7 +34,7 @@
     <template #footer>
       <span class="dialog-footer">
         <BaseButton type="default" data="取消" @click="closeDialog" />
-        <BaseButton data="确定" @click="submitForm" />
+        <BaseButton data="确定" @click="submitForm" :loading="loading" />
       </span>
     </template>
   </el-dialog>
@@ -55,6 +55,8 @@ const closeDialog = () => {
   emits("update:show", false);
   resetForm();
 };
+// 按钮防重复点击
+const loading = ref(false);
 // 表单
 const formRef = ref(null);
 // 定义变量
@@ -73,13 +75,17 @@ const submitForm = () => {
   if (!formEl) return;
   formEl.validate(async (valid) => {
     if (valid) {
+      loading.value = true;
       try {
         const { code } = await addGood(form);
         if (code == 200) {
           closeDialog();
           ElMessage.success("新增成功");
         }
-      } catch (err) {}
+      } catch (err) {
+      } finally {
+        loading.value = false;
+      }
     }
   });
 };

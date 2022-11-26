@@ -2,7 +2,7 @@
  * @Author: 胡苏珍 1628469970@qq.com
  * @Date: 2022-11-24 15:20:20
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 02:12:09
+ * @LastEditTime: 2022-11-26 12:51:22
  * @FilePath: \trace\src\components\PageTable.vue
  * @Description: 商品流通列表
 -->
@@ -34,15 +34,6 @@
 </template>
 
 <script setup name="PageTable">
-import {
-  ref,
-  reactive,
-  toRefs,
-  computed,
-  watch,
-  onMounted,
-  onBeforeUnmount,
-} from "vue";
 const props = defineProps({
   data: {
     type: Array,
