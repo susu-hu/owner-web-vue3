@@ -1,40 +1,37 @@
 <!--
- * @Author: susu 1628469970@qq.com
- * @Date: 2022-11-26 13:55:25
+ * @Author: 胡苏珍 1628469970@qq.com
+ * @Date: 2022-11-24 15:43:47
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 23:46:08
- * @FilePath: \electronic-deposit\src\components\MakeRquest.vue
- * @Description: 发起请求
+ * @LastEditTime: 2022-11-27 01:05:36
+ * @FilePath: \electronic-deposit\src\components\DepoistApprove.vue
+ * @Description: 批准请求
 -->
-
 <template>
   <el-dialog
     :model-value="show"
-    title="发起请求"
-    width="420px"
+    title="批准请求"
+    width="400px"
     center
     :append-to-body="true"
     @close="closeDialog"
     class="page-dailog"
+    size="large"
   >
     <el-form
       ref="formRef"
       :rules="rules"
       :model="form"
       :inline="true"
-      label-width="140px"
+      label-width="110px"
     >
       <el-form-item label="请求ID：" prop="id">
-        <el-input v-model="form.id" clearable />
+        <el-input v-model="form.id" clearable disabled />
       </el-form-item>
-      <el-form-item label="存证摘要：" prop="hash">
-        <el-input v-model="form.hash" clearable />
-      </el-form-item>
-      <el-form-item label="请求说明Hash：" prop="ext">
-        <el-input v-model="form.ext" clearable />
-      </el-form-item>
-      <el-form-item label="批准人数：" prop="voted">
-        <el-input v-model="form.voted" clearable />
+      <el-form-item label="是否批准：" prop="success">
+        <el-radio-group v-model="form.success">
+          <el-radio label="1" size="large" border>是</el-radio>
+          <el-radio label="0" size="large" border>否</el-radio>
+        </el-radio-group>
       </el-form-item>
     </el-form>
     <template #footer>
@@ -46,9 +43,8 @@
   </el-dialog>
 </template>
 
-<script setup name="MakeRquest">
-import { ref, unref, reactive, onBeforeUnmount } from "vue";
-import mitter from "@/utils/bus.js";
+<script setup name="DepoistApprove">
+import { ref, reactive, unref, watch } from "vue";
 import { addGood } from "@/api";
 import { ElMessage } from "element-plus";
 const props = defineProps({
@@ -56,16 +52,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-});
-const emits = defineEmits(["update:show"]);
-const closeDialog = () => {
-  emits("update:show", false);
-  resetForm();
-};
-//当前账户
-const accounts = ref("");
-mitter.$on("accounts", (e) => {
-  accounts.value = e;
+  curr: {
+    type: Object,
+    default: () => {},
+  },
 });
 // 按钮防重复点击
 const loading = ref(false);
@@ -73,20 +63,27 @@ const loading = ref(false);
 const formRef = ref(null);
 // 定义变量
 const form = reactive({
-  voted: "",
-  ext: "",
   id: "",
-  hash: "",
+  success: "",
 });
 // 表单规则
 const rules = {
-  voted: [{ required: true, message: "请输入批准人数", trigger: "blur" }],
-  ext: [{ required: true, message: "请输入请求说明Hash", trigger: "blur" }],
   id: [{ required: true, message: "请输入请求ID", trigger: "blur" }],
-  hash: [{ required: true, message: "请输入存证摘要", trigger: "blur" }],
+  success: [{ required: true, message: "请选择是否批准", trigger: "change" }],
+};
+watch(
+  () => props.curr,
+  (n, _) => {
+    form.id = n.id;
+  }
+);
+const emits = defineEmits(["update:show", "query"]);
+const closeDialog = () => {
+  emits("update:show", false);
+  resetForm();
 };
 // 表单提交
-const submitForm = async () => {
+const submitForm = () => {
   let formEl = unref(formRef);
   if (!formEl) return;
   formEl.validate(async (valid) => {
@@ -96,12 +93,7 @@ const submitForm = async () => {
         const { code } = await addGood(form);
         if (code == 200) {
           closeDialog();
-          // 更新我的存证请求列表
-          mitter.$emit("getRequestData", {
-            page: 1,
-            pageSize: 20,
-            accounts: accounts.value,
-          });
+          emits("query");
           ElMessage.success("操作成功");
         }
       } catch (err) {
@@ -117,9 +109,6 @@ const resetForm = () => {
   if (!formEl) return;
   formEl.resetFields();
 };
-onBeforeUnmount(() => {
-  mitter.$off("accounts");
-});
 </script>
 
 <style lang="less">

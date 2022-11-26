@@ -2,7 +2,7 @@
  * @Author: 胡苏珍 1628469970@qq.com
  * @Date: 2022-11-24 11:43:22
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 23:20:33
+ * @LastEditTime: 2022-11-27 01:22:40
  * @FilePath: \electronic-deposit\src\views\index.vue
  * @Description: 首页
 -->
@@ -10,30 +10,30 @@
   <div class="container flex-column">
     <h2>区块链电子存证系统</h2>
     <div class="flex head-account">
-      <CurrAccount />
+      <PageAccount />
     </div>
     <PageInfo />
     <div class="head-record">
       <p class="head-record-title mb10">
         <BaseTitle data="所有待批准的存证请求列表" />
       </p>
-      <ApprovalTable />
+      <TableApproval />
     </div>
     <div class="head-record">
       <div class="flex-row j_b mb10">
         <BaseTitle data="我的存证请求列表" class="head-record-title" />
         <BaseButton data="发起请求" @click="showSaleDialog = true" />
       </div>
-      <RequestTable />
+      <TableRequest />
     </div>
     <div class="head-record">
       <p class="head-record-title mb10">
         <BaseTitle data="我的存证" />
       </p>
-      <MyDepositTable />
+      <TableDeposit />
     </div>
   </div>
-  <MakeRquest v-model:show="showSaleDialog" />
+  <DepoistRquest v-model:show="showSaleDialog" />
 </template>
 
 <script setup>

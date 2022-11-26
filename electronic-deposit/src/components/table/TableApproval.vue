@@ -2,8 +2,8 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 17:17:12
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 23:05:26
- * @FilePath: \electronic-deposit\src\components\ApprovalTable.vue
+ * @LastEditTime: 2022-11-27 01:21:09
+ * @FilePath: \electronic-deposit\src\components\TableApproval.vue
  * @Description: 所有待批准的存证请求列表
 -->
 <template>
@@ -25,7 +25,7 @@
       </div>
     </template>
   </BasePageTable>
-  <MakeApprove
+  <DepoistApprove
     v-model:show="showBuyDialog"
     :curr="state.currRow"
     @query="updateList"

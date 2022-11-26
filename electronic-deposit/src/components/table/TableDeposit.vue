@@ -3,7 +3,7 @@
  * @Date: 2022-11-26 19:24:14
  * @LastEditors: susu 1628469970@qq.com
  * @LastEditTime: 2022-11-26 23:22:29
- * @FilePath: \electronic-deposit\src\components\MyDepositTable.vue
+ * @FilePath: \electronic-deposit\src\components\TableDeposit.vue
  * @Description: 我的购买记录列表
 -->
 <template>

@@ -2,8 +2,8 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 19:23:43
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 23:21:22
- * @FilePath: \electronic-deposit\src\components\RequestTable.vue
+ * @LastEditTime: 2022-11-27 01:22:01
+ * @FilePath: \electronic-deposit\src\components\TableRequest.vue
  * @Description: 我的存证请求列表
 -->
 <template>
@@ -25,7 +25,7 @@
       </div>
     </template>
   </BasePageTable>
-  <CancelRequest
+  <DepoistCancel
     v-model:show="showCancelDialog"
     :curr="state.currRow"
     @query="updateList"

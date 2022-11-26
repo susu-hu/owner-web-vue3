@@ -2,8 +2,8 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 16:07:13
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 23:36:10
- * @FilePath: \electronic-deposit\src\components\CurrAccount.vue
+ * @LastEditTime: 2022-11-27 01:20:26
+ * @FilePath: \electronic-deposit\src\components\PageAccount.vue
  * @Description: 当前账户
 -->
 <template>

@@ -1,15 +1,15 @@
 <!--
  * @Author: susu 1628469970@qq.com
- * @Date: 2022-11-26 20:03:12
+ * @Date: 2022-11-26 22:49:51
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 23:45:50
- * @FilePath: \electronic-deposit\src\components\CanceleSale.vue
- * @Description: 删除请求
+ * @LastEditTime: 2022-11-27 01:26:42
+ * @FilePath: \electronic-deposit\src\components\action\DepoistCancel.vue
+ * @Description:删除请求
 -->
 <template>
   <el-dialog
     :model-value="show"
-    title="取消请求"
+    title="删除请求"
     width="420px"
     center
     :append-to-body="true"
@@ -25,7 +25,7 @@
     </template>
   </el-dialog>
 </template>
-<script setup name="CancelRequest">
+<script setup name="DepoistCancel">
 import { ref, unref, reactive } from "vue";
 import { addGood } from "@/api";
 import { ElMessage } from "element-plus";
