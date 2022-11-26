@@ -2,43 +2,19 @@
  * @Author: 胡苏珍 1628469970@qq.com
  * @Date: 2022-11-24 11:43:22
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 15:56:13
- * @FilePath: \trace\src\views\index.vue
+ * @LastEditTime: 2022-11-26 16:55:56
+ * @FilePath: \smart-energy\src\views\index.vue
  * @Description: 首页
 -->
 <template>
   <div class="container flex-column">
-    <!-- <PageBg /> -->
-    <h2>供应链防伪溯源系统</h2>
-    <div class="head-search flex">
-      <el-form :model="params" :inline="true" label-width="100">
-        <el-form-item label="商品类别:" class="head-search-item">
-          <el-input
-            v-model="params._category"
-            clearable
-            placeholder="请输入商品类别"
-          />
-        </el-form-item>
-        <el-form-item label="商品ID:" class="head-search-item">
-          <el-input
-            v-model="params._goodsId"
-            clearable
-            placeholder="请输入商品ID"
-          />
-        </el-form-item>
-      </el-form>
-      <BaseButton data="查找" @click="searchInfo" />
-      <BaseButton data="创建" @click="showGoodDialog = true" />
+    <h2>基于区块链的智慧能源交易系统</h2>
+    <div class="flex head-account">
+      <CurrAccount />
     </div>
     <PageInfo :data="state.goodInfo" />
-    <div class="flex-row head-record j_b">
-      <BaseTitle data="商品流通记录" />
-      <BaseButton
-        data="添加记录"
-        @click="(showRecordDialog = true), (state.currRow = state.goodInfo)"
-      />
-    </div>
-    <PageTable
+    <BasePageTable
+      :columns="state.columns"
       :data="state.tableData"
       :total="state.total"
       :page-size="params.pageSize"
@@ -47,15 +23,10 @@
     />
   </div>
   <AddGood v-model:show="showGoodDialog" />
-  <AddRecord
-    v-model:show="showRecordDialog"
-    @query="updateList"
-    :curr="state.currRow"
-  />
+  <AddRecord v-model:show="showRecordDialog" @query="updateList" />
 </template>
 
 <script setup>
-import axios from "axios";
 import { ref, reactive } from "vue";
 import { getGoodRecords } from "@/api";
 const showGoodDialog = ref(false),
@@ -65,7 +36,12 @@ const state = reactive({
   total: 0, //列表总条数
   tableData: [], //列表数据
   goodInfo: {},
-  currRow: {}, //当前选中数据
+  columns: [
+    {
+      prop: "addr",
+      label: "地址",
+    },
+  ], //列表字段属性
 });
 // 查询参数
 const params = reactive({
@@ -84,7 +60,7 @@ const getGoodInfo = async (e) => {
   try {
     let info = {
       _category: "电子产品",
-      _goodsId: "000888",
+      _goodsId: "0002",
       _status: "有效",
     };
     state.goodInfo = info;
@@ -100,6 +76,7 @@ const getListData = async (e) => {
     }
   } catch (err) {}
 };
+getListData(params);
 //页数切换
 const handleCurrentChange = (e) => {
   params.page = e;
@@ -119,17 +96,19 @@ const updateList = () => {
   padding: 50px 80px 20px;
   color: #2d3d50;
   font-size: 14px;
+
   h2 {
     font-size: 38px;
     letter-spacing: 4px;
     text-shadow: 0 2px 2px rgba(20, 20, 20, 0.4);
   }
-  .head-search {
-    margin-top: 40px;
+  .head-account {
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 20px;
     padding: 10px;
-    &-item {
-      width: 300px;
-    }
+    letter-spacing: 4px;
+    text-shadow: 0 2px 2px rgba(20, 20, 20, 0.4);
   }
   .head-record {
     width: 100%;

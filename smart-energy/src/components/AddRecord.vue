@@ -2,8 +2,8 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-24 20:25:29
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 16:02:12
- * @FilePath: \trace\src\components\AddRecord.vue
+ * @LastEditTime: 2022-11-26 12:50:59
+ * @FilePath: \smart-energy\src\components\AddRecord.vue
  * @Description: 添加商品流通记录
 -->
 <template>
@@ -58,10 +58,6 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  curr: {
-    type: Object,
-    default: () => {}, //当前对象数据
-  },
 });
 const emits = defineEmits(["update:show", "query"]);
 const closeDialog = () => {
@@ -91,7 +87,7 @@ const submitForm = async () => {
     if (valid) {
       loading.value = true;
       try {
-        const { code } = await addGood({ ...form, ...props.curr });
+        const { code } = await addGood(form);
         if (code == 200) {
           closeDialog();
           emits("query");

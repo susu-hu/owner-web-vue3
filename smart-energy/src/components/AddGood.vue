@@ -1,43 +1,34 @@
 <!--
- * @Author: susu 1628469970@qq.com
- * @Date: 2022-11-24 20:25:29
+ * @Author: 胡苏珍 1628469970@qq.com
+ * @Date: 2022-11-24 15:43:47
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 16:02:12
- * @FilePath: \trace\src\components\AddRecord.vue
- * @Description: 添加商品流通记录
+ * @LastEditTime: 2022-11-26 12:22:41
+ * @FilePath: \smart-energy\src\components\AddGood.vue
+ * @Description: 创建商品
 -->
 <template>
   <el-dialog
     :model-value="show"
-    title="添加记录"
-    width="420px"
+    title="新增商品"
+    width="400px"
     center
     :append-to-body="true"
     @close="closeDialog"
     class="page-dailog"
+    size="large"
   >
     <el-form
       ref="formRef"
       :rules="rules"
       :model="form"
       :inline="true"
-      label-width="140px"
+      label-width="110px"
     >
-      <el-form-item label="操作账户地址：" prop="addr">
-        <el-input v-model="form.addr" clearable />
+      <el-form-item label="商品类别:" prop="_category">
+        <el-input v-model.trim="form._category" clearable />
       </el-form-item>
-      <el-form-item label="商品状态：" prop="status">
-        <el-input v-model="form.status" clearable />
-      </el-form-item>
-      <el-form-item label="说明：" prop="remark">
-        <el-input
-          v-model="form.remark"
-          type="textarea"
-          show-word-limit
-          clearable
-          :maxlength="200"
-          resize="none"
-        />
+      <el-form-item label="商品ID:" prop="_goodsId">
+        <el-input v-model.trim="form._goodsId" clearable />
       </el-form-item>
     </el-form>
     <template #footer>
@@ -50,7 +41,7 @@
 </template>
 
 <script setup name="AddGood">
-import { ref, unref, reactive } from "vue";
+import { ref, reactive, unref } from "vue";
 import { addGood } from "@/api";
 import { ElMessage } from "element-plus";
 const props = defineProps({
@@ -58,12 +49,8 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  curr: {
-    type: Object,
-    default: () => {}, //当前对象数据
-  },
 });
-const emits = defineEmits(["update:show", "query"]);
+const emits = defineEmits(["update:show"]);
 const closeDialog = () => {
   emits("update:show", false);
   resetForm();
@@ -74,28 +61,26 @@ const loading = ref(false);
 const formRef = ref(null);
 // 定义变量
 const form = reactive({
-  addr: "",
-  status: "",
-  remark: "",
+  _category: "",
+  _goodsId: "",
 });
 // 表单规则
 const rules = {
-  addr: [{ required: true, message: "请输入操作账户地址", trigger: "blur" }],
-  status: [{ required: true, message: "请输入商品状态", trigger: "blur" }],
+  _category: [{ required: true, message: "请输入商品分类", trigger: "blur" }],
+  _goodsId: [{ required: true, message: "请输入商品ID", trigger: "blur" }],
 };
 // 表单提交
-const submitForm = async () => {
+const submitForm = () => {
   let formEl = unref(formRef);
   if (!formEl) return;
   formEl.validate(async (valid) => {
     if (valid) {
       loading.value = true;
       try {
-        const { code } = await addGood({ ...form, ...props.curr });
+        const { code } = await addGood(form);
         if (code == 200) {
           closeDialog();
-          emits("query");
-          ElMessage.success("添加成功");
+          ElMessage.success("新增成功");
         }
       } catch (err) {
       } finally {
