@@ -2,8 +2,8 @@
  * @Author: 胡苏珍 1628469970@qq.com
  * @Date: 2022-11-24 15:43:47
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-27 01:05:36
- * @FilePath: \electronic-deposit\src\components\DepoistApprove.vue
+ * @LastEditTime: 2022-11-27 01:29:29
+ * @FilePath: \electronic-deposit\src\components\DepositApprove.vue
  * @Description: 批准请求
 -->
 <template>
@@ -43,7 +43,7 @@
   </el-dialog>
 </template>
 
-<script setup name="DepoistApprove">
+<script setup name="DepositApprove">
 import { ref, reactive, unref, watch } from "vue";
 import { addGood } from "@/api";
 import { ElMessage } from "element-plus";

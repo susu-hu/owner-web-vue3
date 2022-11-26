@@ -25,7 +25,7 @@
       </div>
     </template>
   </BasePageTable>
-  <DepoistApprove
+  <DepositApprove
     v-model:show="showBuyDialog"
     :curr="state.currRow"
     @query="updateList"

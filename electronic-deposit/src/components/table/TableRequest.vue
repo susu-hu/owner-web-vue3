@@ -25,7 +25,7 @@
       </div>
     </template>
   </BasePageTable>
-  <DepoistCancel
+  <DepositCancel
     v-model:show="showCancelDialog"
     :curr="state.currRow"
     @query="updateList"

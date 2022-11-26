@@ -33,7 +33,7 @@
       <TableDeposit />
     </div>
   </div>
-  <DepoistRquest v-model:show="showSaleDialog" />
+  <DepositRquest v-model:show="showSaleDialog" />
 </template>
 
 <script setup>

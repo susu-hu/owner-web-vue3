@@ -2,8 +2,8 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 13:55:25
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-27 01:25:21
- * @FilePath: \electronic-deposit\src\components\DepoistRquest.vue
+ * @LastEditTime: 2022-11-27 01:29:50
+ * @FilePath: \electronic-deposit\src\components\DepositRquest.vue
  * @Description: 发起请求
 -->
 
@@ -46,7 +46,7 @@
   </el-dialog>
 </template>
 
-<script setup name="DepoistRquest">
+<script setup name="DepositRquest">
 import { ref, unref, reactive, onBeforeUnmount } from "vue";
 import mitter from "@/utils/bus.js";
 import { addGood } from "@/api";
