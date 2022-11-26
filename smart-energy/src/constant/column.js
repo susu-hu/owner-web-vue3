@@ -2,7 +2,7 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 17:19:43
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 19:24:38
+ * @LastEditTime: 2022-11-27 00:35:33
  * @FilePath: \smart-energy\src\api\constant\column.js
  * @Description: 能源列表/出售记录列表/购买记录列表 -对应的列表字段
  */
@@ -38,7 +38,7 @@ export const ENERY_COLUMNS = [
     },
     {
         slot: "action",
-        label: "操作", showtip: true
+        label: "操作",
     },
 ]
 export const SALES_COLUMNS = [
@@ -69,7 +69,7 @@ export const SALES_COLUMNS = [
     },
     {
         slot: "action",
-        label: "操作", showtip: true
+        label: "操作",
     },
 ]
 export const PURCHASED_COLUMNS = [

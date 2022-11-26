@@ -2,7 +2,7 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 17:19:43
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 23:08:24
+ * @LastEditTime: 2022-11-27 00:35:07
  * @FilePath: \electronic-deposit\src\api\constant\column.js
  * @Description: 所有待批准的存证请求列表/我的存证请求列表/我的存证-对应的列表字段
  */
@@ -30,7 +30,7 @@ export const DEPOSIT_BEAPPROVAL_COLUMNS = [
     },
     {
         slot: "action",
-        label: "操作", showtip: true
+        label: "操作",
     },
 ]
 export const DEPOSIT_REQUEST_COLUMNS = [
@@ -53,7 +53,7 @@ export const DEPOSIT_REQUEST_COLUMNS = [
     },
     {
         slot: "action",
-        label: "操作", showtip: true
+        label: "操作",
     },
 ]
 export const DEPOSIT_COLUMNS = [

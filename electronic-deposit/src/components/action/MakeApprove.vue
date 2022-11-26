@@ -2,7 +2,7 @@
  * @Author: 胡苏珍 1628469970@qq.com
  * @Date: 2022-11-24 15:43:47
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 23:44:29
+ * @LastEditTime: 2022-11-27 01:05:36
  * @FilePath: \electronic-deposit\src\components\MakeApprove.vue
  * @Description: 批准请求
 -->
@@ -68,7 +68,7 @@ const form = reactive({
 });
 // 表单规则
 const rules = {
-  id: [{ required: true, message: "请输入能源ID", trigger: "blur" }],
+  id: [{ required: true, message: "请输入请求ID", trigger: "blur" }],
   success: [{ required: true, message: "请选择是否批准", trigger: "change" }],
 };
 watch(

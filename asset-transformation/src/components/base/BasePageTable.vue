@@ -2,8 +2,8 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 16:38:51
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-27 00:41:10
- * @FilePath: \smart-energy\src\components\base\BasePageTable.vue
+ * @LastEditTime: 2022-11-27 00:40:56
+ * @FilePath: \asset-transformation\src\components\base\BasePageTable.vue
  * @Description: 通用表格+分页
 -->
 <template>

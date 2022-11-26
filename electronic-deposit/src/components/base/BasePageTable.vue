@@ -2,7 +2,7 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 16:38:51
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 19:39:23
+ * @LastEditTime: 2022-11-27 00:41:24
  * @FilePath: \electronic-deposit\src\components\base\BasePageTable.vue
  * @Description: 通用表格+分页
 -->
@@ -84,7 +84,7 @@ const handleCurrentChange = (e) => {
   background-color: transparent !important;
 }
 ::v-deep(.el-table th) {
-  background: #f1f3f5;
+  background: #f1f3f5 !important;
   &:first-child {
     border-radius: 10px 0 0 10px;
   }
