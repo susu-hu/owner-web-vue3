@@ -2,7 +2,7 @@
  * @Author: 胡苏珍 1628469970@qq.com
  * @Date: 2022-11-24 11:43:22
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 22:37:40
+ * @LastEditTime: 2022-11-27 01:15:31
  * @FilePath: \smart-energy\src\views\index.vue
  * @Description: 首页
 -->
@@ -10,30 +10,30 @@
   <div class="container flex-column">
     <h2>基于区块链的智慧能源交易系统</h2>
     <div class="flex head-account">
-      <CurrAccount />
+      <PageAccount />
     </div>
     <PageInfo />
     <div class="head-record">
       <p class="head-record-title mb10">
         <BaseTitle data="所有能源列表" />
       </p>
-      <EnergyTable />
+      <TableEnergy />
     </div>
     <div class="head-record">
       <div class="flex-row j_b mb10">
         <BaseTitle data="我的出售记录列表" class="head-record-title" />
         <BaseButton data="出售能源" @click="showSaleDialog = true" />
       </div>
-      <SalesTable />
+      <TableSales />
     </div>
     <div class="head-record">
       <p class="head-record-title mb10">
         <BaseTitle data="我的购买记录列表" />
       </p>
-      <PurchasedTable />
+      <TablePurchased />
     </div>
   </div>
-  <SaleEnery v-model:show="showSaleDialog" />
+  <EnerySale v-model:show="showSaleDialog" />
 </template>
 
 <script setup>

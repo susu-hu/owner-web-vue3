@@ -3,7 +3,7 @@
  * @Date: 2022-11-24 15:43:47
  * @LastEditors: susu 1628469970@qq.com
  * @LastEditTime: 2022-11-26 21:14:18
- * @FilePath: \smart-energy\src\components\BuyEnergy.vue
+ * @FilePath: \smart-energy\src\components\EnergyBuy.vue
  * @Description: 购买能源
 -->
 <template>
@@ -43,7 +43,7 @@
   </el-dialog>
 </template>
 
-<script setup name="BuyEnergy">
+<script setup name="EnergyBuy">
 import { ref, reactive, unref, watch } from "vue";
 import { addGood } from "@/api";
 import { ElMessage } from "element-plus";

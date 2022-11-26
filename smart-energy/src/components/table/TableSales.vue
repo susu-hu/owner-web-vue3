@@ -2,8 +2,8 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 19:23:43
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 22:37:21
- * @FilePath: \smart-energy\src\components\SalesTable.vue
+ * @LastEditTime: 2022-11-27 01:16:39
+ * @FilePath: \smart-energy\src\components\TableSales.vue
  * @Description: 我的出售记录列表
 -->
 <template>
@@ -25,7 +25,7 @@
       </div>
     </template>
   </BasePageTable>
-  <CancelSale
+  <EnergyCancel
     v-model:show="showCancelDialog"
     :curr="state.currRow"
     @query="updateList"

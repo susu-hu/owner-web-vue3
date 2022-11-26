@@ -2,8 +2,8 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 13:55:25
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 22:37:18
- * @FilePath: \smart-energy\src\components\SaleEnery.vue
+ * @LastEditTime: 2022-11-27 01:13:57
+ * @FilePath: \smart-energy\src\components\EnerySale.vue
  * @Description: 出售能源
 -->
 
@@ -55,7 +55,7 @@
   </el-dialog>
 </template>
 
-<script setup name="SaleEnery">
+<script setup name="EnerySale">
 import { ref, unref, reactive, onBeforeUnmount } from "vue";
 import mitter from "@/utils/bus.js";
 import { addGood } from "@/api";

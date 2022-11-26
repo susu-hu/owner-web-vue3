@@ -3,7 +3,7 @@
  * @Date: 2022-11-26 19:24:14
  * @LastEditors: susu 1628469970@qq.com
  * @LastEditTime: 2022-11-26 22:37:13
- * @FilePath: \smart-energy\src\components\PurchasedTable.vue
+ * @FilePath: \smart-energy\src\components\TablePurchased.vue
  * @Description: 我的购买记录列表
 -->
 <template>

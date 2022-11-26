@@ -3,7 +3,7 @@
  * @Date: 2022-11-26 16:07:13
  * @LastEditors: susu 1628469970@qq.com
  * @LastEditTime: 2022-11-26 22:33:46
- * @FilePath: \smart-energy\src\components\CurrAccount.vue
+ * @FilePath: \smart-energy\src\components\PageAccount.vue
  * @Description: 当前账户
 -->
 <template>

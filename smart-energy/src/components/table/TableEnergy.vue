@@ -2,8 +2,8 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 17:17:12
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 22:40:02
- * @FilePath: \smart-energy\src\components\EnergyTable.vue
+ * @LastEditTime: 2022-11-27 01:16:19
+ * @FilePath: \smart-energy\src\components\TableEnergy.vue
  * @Description: 能源列表
 -->
 <template>
@@ -25,7 +25,7 @@
       </div>
     </template>
   </BasePageTable>
-  <BuyEnergy
+  <EnergyBuy
     v-model:show="showBuyDialog"
     :curr="state.currRow"
     @query="updateList"

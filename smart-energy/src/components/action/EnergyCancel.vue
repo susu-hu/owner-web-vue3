@@ -2,7 +2,7 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 20:03:12
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 20:23:09
+ * @LastEditTime: 2022-11-27 01:14:26
  * @FilePath: \smart-energy\src\components\CanceleSale.vue
  * @Description: 取消出售
 -->
@@ -25,7 +25,7 @@
     </template>
   </el-dialog>
 </template>
-<script setup name="CancelSale">
+<script setup name="EnergyCancel">
 import { ref, unref, reactive } from "vue";
 import { addGood } from "@/api";
 import { ElMessage } from "element-plus";
