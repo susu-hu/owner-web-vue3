@@ -1,43 +1,37 @@
 <!--
- * @Author: susu 1628469970@qq.com
- * @Date: 2022-11-24 20:25:29
+ * @Author: 胡苏珍 1628469970@qq.com
+ * @Date: 2022-11-24 15:43:47
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 12:50:59
- * @FilePath: \smart-energy\src\components\AddRecord.vue
- * @Description: 添加商品流通记录
+ * @LastEditTime: 2022-11-26 21:14:18
+ * @FilePath: \smart-energy\src\components\BuyEnergy.vue
+ * @Description: 购买能源
 -->
 <template>
   <el-dialog
     :model-value="show"
-    title="添加记录"
-    width="420px"
+    title="购买能源"
+    width="400px"
     center
     :append-to-body="true"
     @close="closeDialog"
     class="page-dailog"
+    size="large"
   >
     <el-form
       ref="formRef"
       :rules="rules"
       :model="form"
       :inline="true"
-      label-width="140px"
+      label-width="110px"
     >
-      <el-form-item label="操作账户地址：" prop="addr">
-        <el-input v-model="form.addr" clearable />
+      <el-form-item label="能源ID：" prop="energyId">
+        <el-input v-model="form.energyId" clearable disabled />
       </el-form-item>
-      <el-form-item label="商品状态：" prop="status">
-        <el-input v-model="form.status" clearable />
+      <el-form-item label="购买单价：" prop="price">
+        <el-input v-model="form.price" clearable />
       </el-form-item>
-      <el-form-item label="说明：" prop="remark">
-        <el-input
-          v-model="form.remark"
-          type="textarea"
-          show-word-limit
-          clearable
-          :maxlength="200"
-          resize="none"
-        />
+      <el-form-item label="购买数额：" prop="energyAmount">
+        <el-input v-model="form.energyAmount" clearable />
       </el-form-item>
     </el-form>
     <template #footer>
@@ -49,8 +43,8 @@
   </el-dialog>
 </template>
 
-<script setup name="AddGood">
-import { ref, unref, reactive } from "vue";
+<script setup name="BuyEnergy">
+import { ref, reactive, unref, watch } from "vue";
 import { addGood } from "@/api";
 import { ElMessage } from "element-plus";
 const props = defineProps({
@@ -58,29 +52,42 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  curr: {
+    type: Object,
+    default: () => {},
+  },
 });
-const emits = defineEmits(["update:show", "query"]);
-const closeDialog = () => {
-  emits("update:show", false);
-  resetForm();
-};
 // 按钮防重复点击
 const loading = ref(false);
 // 表单
 const formRef = ref(null);
 // 定义变量
 const form = reactive({
-  addr: "",
-  status: "",
-  remark: "",
+  energyId: "",
+  price: "",
+  energyAmount: "",
 });
 // 表单规则
 const rules = {
-  addr: [{ required: true, message: "请输入操作账户地址", trigger: "blur" }],
-  status: [{ required: true, message: "请输入商品状态", trigger: "blur" }],
+  energyId: [{ required: true, message: "请输入能源ID", trigger: "blur" }],
+  price: [{ required: true, message: "请输入单价", trigger: "blur" }],
+  energyAmount: [
+    { required: true, message: "请输入购买数额", trigger: "blur" },
+  ],
+};
+watch(
+  () => props.curr,
+  (n, _) => {
+    form.energyId = n.energyId;
+  }
+);
+const emits = defineEmits(["update:show", "query"]);
+const closeDialog = () => {
+  emits("update:show", false);
+  resetForm();
 };
 // 表单提交
-const submitForm = async () => {
+const submitForm = () => {
   let formEl = unref(formRef);
   if (!formEl) return;
   formEl.validate(async (valid) => {
@@ -91,7 +98,7 @@ const submitForm = async () => {
         if (code == 200) {
           closeDialog();
           emits("query");
-          ElMessage.success("添加成功");
+          ElMessage.success("购买成功");
         }
       } catch (err) {
       } finally {

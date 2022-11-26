@@ -2,7 +2,7 @@
  * @Author: 胡苏珍 1628469970@qq.com
  * @Date: 2022-11-24 15:29:46
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 15:43:56
+ * @LastEditTime: 2022-11-26 21:53:11
  * @FilePath: \smart-energy\src\components\PageInfo.vue
  * @Description:能源销售量/购买量/出售量/购买量/可提取余额
 -->
@@ -13,7 +13,7 @@
       <p><BaseTitle data="能源销售量" /></p>
     </div>
     <div class="flex-column j_c page-info-item">
-      <p><BaseNumScroll :endVal="state.totalSellEnergy" />/度</p>
+      <p><BaseNumScroll :endVal="state.totalBuyEnergy" />/度</p>
       <p><BaseTitle data="能源购买量" /></p>
     </div>
     <div class="flex-column j_c page-info-item">
@@ -25,26 +25,41 @@
       <p><BaseTitle data="我的购买量" /></p>
     </div>
     <div class="flex-column j_c page-info-item">
-      <p><BaseNumScroll :endVal="state.totalSellEnergy" />/ETH</p>
+      <p><BaseNumScroll :endVal="state.accountBalance" />/ETH</p>
       <p><BaseTitle data="可提取余额" /></p>
     </div>
   </div>
 </template>
 
 <script setup name="PageInfo">
-import { ref, reactive } from "vue";
-const state = reactive({
-  totalSellEnergy: 100, //能源销售量
-  totalBuyEnergy: 200, //
+import { ref, onBeforeUnmount } from "vue";
+import mitter from "@/utils/bus.js";
+import { getAcccountInfo } from "@/api";
+let state = ref({
+  totalSellEnergy: 0, //能源销售量
+  totalBuyEnergy: 0, //能源购买量
+  accountBalance: 0, //账户余额
+  //TO DO...
+});
+const getDataInfo = async (e) => {
+  try {
+    const { code, data } = await getAcccountInfo({ accounts: e });
+    if (code == 200) {
+      state.value = data;
+    }
+  } catch (err) {}
+};
+mitter.$on("getAccountInfo", getDataInfo);
+// 在组件卸载之前移除监听
+onBeforeUnmount(() => {
+  mitter.$off("getAccountInfo");
 });
 </script>
 
 <style scoped lang="less">
 .page-info {
   width: 100%;
-  margin: 10px;
-  padding: 20px;
-  border: 1px solid red;
+  padding: 10px;
   letter-spacing: 4px;
   font-weight: bold;
   text-shadow: 0 2px 2px rgba(20, 20, 20, 0.4);

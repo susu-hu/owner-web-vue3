@@ -2,7 +2,7 @@
  * @Author: 胡苏珍 1628469970@qq.com
  * @Date: 2022-11-24 11:43:22
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 16:55:56
+ * @LastEditTime: 2022-11-26 22:37:40
  * @FilePath: \smart-energy\src\views\index.vue
  * @Description: 首页
 -->
@@ -12,81 +12,35 @@
     <div class="flex head-account">
       <CurrAccount />
     </div>
-    <PageInfo :data="state.goodInfo" />
-    <BasePageTable
-      :columns="state.columns"
-      :data="state.tableData"
-      :total="state.total"
-      :page-size="params.pageSize"
-      :curr-page="params.page"
-      @current-change="handleCurrentChange"
-    />
+    <PageInfo />
+    <div class="head-record">
+      <p class="head-record-title mb10">
+        <BaseTitle data="所有能源列表" />
+      </p>
+      <EnergyTable />
+    </div>
+    <div class="head-record">
+      <div class="flex-row j_b mb10">
+        <BaseTitle data="我的出售记录列表" class="head-record-title" />
+        <BaseButton data="出售能源" @click="showSaleDialog = true" />
+      </div>
+      <SalesTable />
+    </div>
+    <div class="head-record">
+      <p class="head-record-title mb10">
+        <BaseTitle data="我的购买记录列表" />
+      </p>
+      <PurchasedTable />
+    </div>
   </div>
-  <AddGood v-model:show="showGoodDialog" />
-  <AddRecord v-model:show="showRecordDialog" @query="updateList" />
+  <SaleEnery v-model:show="showSaleDialog" />
 </template>
 
 <script setup>
 import { ref, reactive } from "vue";
-import { getGoodRecords } from "@/api";
-const showGoodDialog = ref(false),
-  showRecordDialog = ref(false);
-// 页面参数
-const state = reactive({
-  total: 0, //列表总条数
-  tableData: [], //列表数据
-  goodInfo: {},
-  columns: [
-    {
-      prop: "addr",
-      label: "地址",
-    },
-  ], //列表字段属性
-});
-// 查询参数
-const params = reactive({
-  _category: "",
-  _goodsId: "",
-  page: 1,
-  pageSize: 20,
-});
-// 查找按钮点击事件
-const searchInfo = () => {
-  getGoodInfo(params);
-  getListData(params);
-};
-// 获取商品当前信息
-const getGoodInfo = async (e) => {
-  try {
-    let info = {
-      _category: "电子产品",
-      _goodsId: "0002",
-      _status: "有效",
-    };
-    state.goodInfo = info;
-  } catch (err) {}
-};
-// 获取商品流通记录
-const getListData = async (e) => {
-  try {
-    const { code, data, total } = await getGoodRecords(e);
-    if (code == 200) {
-      state.tableData = data;
-      state.total = total;
-    }
-  } catch (err) {}
-};
-getListData(params);
-//页数切换
-const handleCurrentChange = (e) => {
-  params.page = e;
-  getListData(params);
-};
-//更新流通记录列表
-const updateList = () => {
-  params.page = 1;
-  getListData(params);
-};
+import mitter from "@/utils/bus.js";
+// 出售能源
+const showSaleDialog = ref(false);
 </script>
 <style scoped lang="less">
 .container {
@@ -114,6 +68,11 @@ const updateList = () => {
     width: 100%;
     margin-bottom: 10px;
     padding: 10px;
+    &-title {
+      font-size: 15px;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 2px rgba(20, 20, 20, 0.4);
+    }
   }
 }
 ::v-deep(.el-form-item) {

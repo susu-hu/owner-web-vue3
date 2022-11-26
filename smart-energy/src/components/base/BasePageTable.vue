@@ -2,14 +2,18 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 16:38:51
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 16:57:16
+ * @LastEditTime: 2022-11-26 19:39:23
  * @FilePath: \smart-energy\src\components\base\BasePageTable.vue
  * @Description: 通用表格+分页
 -->
 <template>
   <template v-if="data.length">
     <div class="page-table">
-      <BaseTable :data="data" :columns="columns" />
+      <BaseTable :data="data" :columns="columns">
+        <template #action="{ row, $index }">
+          <slot :row="row" :index="$index"></slot>
+        </template>
+      </BaseTable>
     </div>
     <el-pagination
       background
@@ -66,10 +70,34 @@ const handleCurrentChange = (e) => {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(20px);
   &.no-data {
-    height: 450px;
+    height: 125px;
   }
 }
-
+// 修改表格样式
+::v-deep(.el-table),
+::v-deep(.el-table__expanded-cell) {
+  background-color: transparent !important;
+}
+::v-deep(.el-table tr),
+::v-deep(.el-table td) {
+  color: #2d3d50;
+  background-color: transparent !important;
+}
+::v-deep(.el-table th) {
+  background: #f1f3f5;
+  &:first-child {
+    border-radius: 10px 0 0 10px;
+  }
+  &:last-child {
+    border-radius: 0 10px 10px 0;
+  }
+}
+::v-deep(.el-table td.el-table__cell) {
+  border-bottom: none;
+}
+::v-deep(.el-table__inner-wrapper::before) {
+  display: none;
+}
 // 修改分页样式
 .pagination {
   display: flex;

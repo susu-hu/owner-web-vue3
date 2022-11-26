@@ -11,21 +11,59 @@ export const getAccounts = (params) => {
         params,
     });
 };
+/**
+ * 获取当前账户信息
+ * @param {*} params 
+ * @returns 
+ */
+export const getAcccountInfo = (params) => {
+    return request({
+        url: "/getDataInfo",
+        method: "get",
+        params,
+    });
+};
+
 
 /**
- * 获取商品流通记录
+ * 获取能源列表
  * @param {*} data
  * @returns
  */
-export const getGoodRecords = (data) => {
+export const getEnergyList = (data) => {
     return request({
-        url: "/getRecords",
+        url: "/getEnergyList",
+        method: "post",
+        data,
+    });
+};
+
+/**
+ * 获取已售列表
+ * @param {*} data
+ * @returns
+ */
+export const getSalesList = (data) => {
+    return request({
+        url: "/getSalesList",
         method: "post",
         data,
     });
 };
 /**
- * 创建商品
+ * 获取购买列表
+ * @param {*} data
+ * @returns
+ */
+export const getPurchasedList = (data) => {
+    return request({
+        url: "/getPurchasedList",
+        method: "post",
+        data,
+    });
+};
+/**
+ * 测试操作
  * @param {*} data 
  * @returns 
  */

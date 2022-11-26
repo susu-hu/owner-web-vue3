@@ -19,6 +19,7 @@ export default defineConfig({
   ],
   server: {
     host: "0.0.0.0",
+    port: 9999,//指定端口号
     proxy: {
       // 代理所有 /api 的请求，该求情将被代理到 target 中
       "/api": {

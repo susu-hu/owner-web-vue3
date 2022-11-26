@@ -2,12 +2,12 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 16:13:23
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 16:37:01
+ * @LastEditTime: 2022-11-26 18:05:01
  * @FilePath: \smart-energy\src\components\base\BaseTable.vue
  * @Description: 通用表格
 -->
 <template>
-  <el-table :data="data" style="width: 100%" height="100%">
+  <el-table :data="data" style="width: 100%" max-height="280">
     <template v-for="item in columns">
       <!-- 序号列 -->
       <template v-if="item.type">
@@ -31,7 +31,7 @@
           :show-overflow-tooltip="item.showtip"
           :fixed="item.fixed"
         >
-          <template #="{ row, $index }" v-if="!item.type">
+          <template #default="{ row, $index }" v-if="!item.type">
             <!-- 自定义插槽 -->
             <slot
               v-if="item.slot"
@@ -60,30 +60,3 @@ const props = defineProps({
   },
 });
 </script>
-<style lang="less" scoped>
-// 修改表格样式
-::v-deep(.el-table),
-::v-deep(.el-table__expanded-cell) {
-  background-color: transparent !important;
-}
-::v-deep(.el-table tr),
-::v-deep(.el-table td) {
-  color: #2d3d50;
-  background-color: transparent !important;
-}
-::v-deep(.el-table th) {
-  background: #f1f3f5;
-  &:first-child {
-    border-radius: 10px 0 0 10px;
-  }
-  &:last-child {
-    border-radius: 0 10px 10px 0;
-  }
-}
-::v-deep(.el-table td.el-table__cell) {
-  border-bottom: none;
-}
-::v-deep(.el-table__inner-wrapper::before) {
-  display: none;
-}
-</style>

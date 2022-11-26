@@ -2,7 +2,7 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-24 20:25:29
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 16:02:12
+ * @LastEditTime: 2022-11-26 17:13:03
  * @FilePath: \trace\src\components\AddRecord.vue
  * @Description: 添加商品流通记录
 -->
@@ -50,7 +50,7 @@
 </template>
 
 <script setup name="AddGood">
-import { ref, unref, reactive } from "vue";
+import { ref, unref, reactive, watch } from "vue";
 import { addGood } from "@/api";
 import { ElMessage } from "element-plus";
 const props = defineProps({
@@ -63,6 +63,12 @@ const props = defineProps({
     default: () => {}, //当前对象数据
   },
 });
+watch(
+  () => props.curr,
+  (n, _) => {
+    console.log("当前对象", n);
+  }
+);
 const emits = defineEmits(["update:show", "query"]);
 const closeDialog = () => {
   emits("update:show", false);
