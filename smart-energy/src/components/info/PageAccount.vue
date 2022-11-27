@@ -2,7 +2,7 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 16:07:13
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-27 16:00:02
+ * @LastEditTime: 2022-11-27 17:16:36
  * @FilePath: \smart-energy\src\components\PageAccount.vue
  * @Description: 当前账户
 -->
@@ -19,7 +19,16 @@
         :key="item.value"
         :label="item.label"
         :value="item.value"
-      />
+      >
+        <el-tooltip
+          class="box-item"
+          effect="light"
+          :content="item.label"
+          placement="left-start"
+        >
+          <p class="text_ellipsis" style="width: 150px">{{ item.label }}</p>
+        </el-tooltip>
+      </el-option>
     </el-select>
   </el-form-item>
 </template>
@@ -37,9 +46,15 @@ const state = reactive({
   try {
     const { code, data } = await getAccounts();
     if (code == 200) {
-      state.accountList = data;
-      if (data?.length) {
-        accounts.value = data[0].value;
+      let options = data.map((item, index) => {
+        return {
+          value: index,
+          label: "账户" + (index + 1) + "(" + item + ")",
+        };
+      });
+      state.accountList = options;
+      if (options?.length) {
+        accounts.value = options[0].value;
         getInitData(accounts.value);
       }
     }
@@ -58,4 +73,3 @@ const getInitData = (e) => {
   mitter.$emit("getSalesdData", p);
 };
 </script>
-<style lang="less" scoped></style>
