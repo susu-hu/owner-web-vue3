@@ -58,8 +58,7 @@ onBeforeUnmount(() => {
   padding: 10px;
   letter-spacing: 4px;
   font-weight: bold;
-  text-shadow: 0 2px 2px rgba(20, 20, 20, 0.4);
-  font-size: 20px;
+  font-size: 25px;
   &-item {
     width: 23%;
     border-radius: 10px;

@@ -2,7 +2,7 @@
  * @Author: 胡苏珍 1628469970@qq.com
  * @Date: 2022-11-24 15:29:46
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-27 00:31:17
+ * @LastEditTime: 2022-11-27 15:30:03
  * @FilePath: \asset-transformation\src\components\PageInfo.vue
  * @Description:总资产数/待批准请求数/我的资产数量/目标批准人数
 -->
@@ -58,8 +58,7 @@ onBeforeUnmount(() => {
   padding: 10px;
   letter-spacing: 4px;
   font-weight: bold;
-  text-shadow: 0 2px 2px rgba(20, 20, 20, 0.4);
-  font-size: 20px;
+  font-size: 25px;
   &-item {
     width: 23%;
     border-radius: 10px;

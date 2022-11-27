@@ -2,7 +2,7 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 17:17:12
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-27 01:16:19
+ * @LastEditTime: 2022-11-27 15:25:42
  * @FilePath: \smart-energy\src\components\TableEnergy.vue
  * @Description: 能源列表
 -->
@@ -85,7 +85,6 @@ const updateList = () => {
   cursor: pointer;
   color: #0072f5;
   letter-spacing: 1px;
-  text-shadow: 0 2px 2px rgba(94, 162, 239, 0.6);
   span {
     padding-right: 8px;
   }

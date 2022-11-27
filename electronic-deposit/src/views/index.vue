@@ -2,7 +2,7 @@
  * @Author: 胡苏珍 1628469970@qq.com
  * @Date: 2022-11-24 11:43:22
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-27 01:22:40
+ * @LastEditTime: 2022-11-27 15:28:43
  * @FilePath: \electronic-deposit\src\views\index.vue
  * @Description: 首页
 -->
@@ -62,7 +62,6 @@ const showSaleDialog = ref(false);
     margin-top: 20px;
     padding: 10px;
     letter-spacing: 4px;
-    text-shadow: 0 2px 2px rgba(20, 20, 20, 0.4);
   }
   .head-record {
     width: 100%;
@@ -71,7 +70,6 @@ const showSaleDialog = ref(false);
     &-title {
       font-size: 15px;
       letter-spacing: 2px;
-      text-shadow: 0 2px 2px rgba(20, 20, 20, 0.4);
     }
   }
 }

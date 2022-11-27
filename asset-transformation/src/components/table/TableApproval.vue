@@ -85,7 +85,6 @@ const updateList = () => {
   cursor: pointer;
   color: #0072f5;
   letter-spacing: 1px;
-  text-shadow: 0 2px 2px rgba(94, 162, 239, 0.6);
   span {
     padding-right: 8px;
   }
