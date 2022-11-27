@@ -2,7 +2,7 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 17:17:12
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 23:05:26
+ * @LastEditTime: 2022-11-27 15:20:19
  * @FilePath: \asset-transformation\src\components\TableApproval.vue
  * @Description: 所有待批准的资产请求列表
 -->
@@ -18,7 +18,7 @@
     <template #default="{ row }">
       <div
         class="flex-row action-btn"
-        @click="(showBuyDialog = true), (state.currRow = row)"
+        @click="(showApprovalDialog = true), (state.currRow = row)"
       >
         <span>批准</span>
         <el-icon size="18" color="#0072f5"><Finished /></el-icon>
@@ -26,18 +26,18 @@
     </template>
   </BasePageTable>
   <AssetApprove
-    v-model:show="showBuyDialog"
+    v-model:show="showApprovalDialog"
     :curr="state.currRow"
     @query="updateList"
   />
 </template>
 <script setup>
-import { ref, reactive, toRefs, onBeforeUnmount } from "vue";
+import { ref, reactive, onBeforeUnmount } from "vue";
 import mitter from "@/utils/bus.js";
 import { DEPOSIT_BEAPPROVAL_COLUMNS } from "@/constant/column";
 import { getEnergyList } from "@/api";
-//购买弹框
-const showBuyDialog = ref(false);
+//批准弹框
+const showApprovalDialog = ref(false);
 // 页面参数
 const state = reactive({
   total: 0, //列表总条数
@@ -53,7 +53,7 @@ let params = reactive({
 });
 // 获取列表数据
 const getListData = async (e) => {
-  params = e;
+  params = JSON.parse(JSON.stringify(e));
   try {
     const { code, data, total } = await getEnergyList(e);
     if (code == 200) {

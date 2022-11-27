@@ -2,7 +2,7 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 19:23:43
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-27 01:35:28
+ * @LastEditTime: 2022-11-27 15:11:09
  * @FilePath: \asset-transformation\src\components\TableRequest.vue
  * @Description: 我的资产请求列表
 -->
@@ -53,7 +53,7 @@ let params = reactive({
 });
 // 获取列表数据
 const getListData = async (e) => {
-  params = e;
+  params = JSON.parse(JSON.stringify(e));
   try {
     const { code, data, total } = await getSalesList(e);
     if (code == 200) {

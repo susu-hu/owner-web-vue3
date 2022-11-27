@@ -53,7 +53,7 @@ let params = reactive({
 });
 // 获取列表数据
 const getListData = async (e) => {
-  params = e;
+  params = JSON.parse(JSON.stringify(e));
   try {
     const { code, data, total } = await getSalesList(e);
     if (code == 200) {

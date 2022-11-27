@@ -2,7 +2,7 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 16:38:51
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-27 00:40:56
+ * @LastEditTime: 2022-11-27 15:15:15
  * @FilePath: \asset-transformation\src\components\base\BasePageTable.vue
  * @Description: 通用表格+分页
 -->
@@ -18,10 +18,10 @@
     <el-pagination
       background
       layout="prev, pager, next"
-      :total="props.total"
+      :total="total"
       class="pagination"
-      :current-page="props.currPage"
-      :page-size="props.pageSize"
+      :current-page="currPage"
+      :page-size="pageSize"
       @current-change="handleCurrentChange"
     />
   </template>

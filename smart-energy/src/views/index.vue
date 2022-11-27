@@ -2,7 +2,7 @@
  * @Author: 胡苏珍 1628469970@qq.com
  * @Date: 2022-11-24 11:43:22
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-27 01:15:31
+ * @LastEditTime: 2022-11-27 15:22:57
  * @FilePath: \smart-energy\src\views\index.vue
  * @Description: 首页
 -->
