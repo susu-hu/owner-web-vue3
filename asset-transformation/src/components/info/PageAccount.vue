@@ -2,7 +2,7 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 16:07:13
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-27 01:31:45
+ * @LastEditTime: 2022-11-27 15:58:52
  * @FilePath: \asset-transformation\src\components\PageAccount.vue
  * @Description: 当前账户
 -->
@@ -38,6 +38,10 @@ const state = reactive({
     const { code, data } = await getAccounts();
     if (code == 200) {
       state.accountList = data;
+      if (data?.length) {
+        accounts.value = data[0].value;
+        getInitData(accounts.value);
+      }
     }
   } catch (err) {}
 })();
