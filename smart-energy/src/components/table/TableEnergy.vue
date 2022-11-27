@@ -2,7 +2,7 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 17:17:12
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-27 15:25:42
+ * @LastEditTime: 2022-11-27 19:08:43
  * @FilePath: \smart-energy\src\components\TableEnergy.vue
  * @Description: 能源列表
 -->
@@ -17,6 +17,7 @@
   >
     <template #default="{ row }">
       <div
+        v-if="row.can_by"
         class="flex-row action-btn"
         @click="(showBuyDialog = true), (state.currRow = row)"
       >
@@ -57,6 +58,9 @@ const getListData = async (e) => {
   try {
     const { code, data, total } = await getEnergyList(e);
     if (code == 200) {
+      data.forEach((item) => {
+        item.can_by = item.initiator !== "条件";
+      });
       state.tableData = data;
       state.total = total;
     }
