@@ -2,7 +2,7 @@
  * @Author: susu 1628469970@qq.com
  * @Date: 2022-11-26 17:17:12
  * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-28 22:45:12
+ * @LastEditTime: 2022-11-28 22:50:12
  * @FilePath: \commercial-bill\src\components\TableBill.vue
  * @Description: 我的票据
 -->
@@ -22,14 +22,14 @@
           @click="(showEndorseDialog = true), (state.currRow = row)"
         >
           <span>背书</span>
-          <el-icon size="18" color="#0072f5"><Position /></el-icon>
+          <el-icon size="18" color="#0072f5"><Connection /></el-icon>
         </div>
         <div
           class="flex-row action-btn mr20"
           @click="(showReciveDialog = true), (state.currRow = row)"
         >
           <span>签收</span>
-          <el-icon size="18" color="#0072f5"><DocumentDelete /></el-icon>
+          <el-icon size="18" color="#0072f5"><Finished /></el-icon>
         </div>
         <div
           class="flex-row action-btn"
