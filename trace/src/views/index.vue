@@ -1,14 +1,14 @@
 <!--
  * @Author: 胡苏珍 1628469970@qq.com
  * @Date: 2022-11-24 11:43:22
- * @LastEditors: susu 1628469970@qq.com
- * @LastEditTime: 2022-11-26 15:56:13
+ * @LastEditors: 胡苏珍 1628469970@qq.com
+ * @LastEditTime: 2022-11-28 11:37:52
  * @FilePath: \trace\src\views\index.vue
  * @Description: 首页
 -->
 <template>
   <div class="container flex-column">
-    <!-- <PageBg /> -->
+    <BaseBg />
     <h2>供应链防伪溯源系统</h2>
     <div class="head-search flex">
       <el-form :model="params" :inline="true" label-width="100">

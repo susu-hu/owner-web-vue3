@@ -3,7 +3,7 @@
  * @Date: 2022-11-24 14:33:42
  * @LastEditors: susu 1628469970@qq.com
  * @LastEditTime: 2022-11-25 20:15:03
- * @FilePath: \trace\src\components\PageBg.vue
+ * @FilePath: \trace\src\components\BaseBg.vue
  * @Description: 毛玻璃-背景
 -->
 <template>
@@ -14,7 +14,7 @@
   </div>
 </template>
 
-<script setup name="PageBg"></script>
+<script setup name="BaseBg"></script>
 
 <style scoped lang="less">
 .container {
